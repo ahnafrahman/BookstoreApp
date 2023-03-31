@@ -23,9 +23,12 @@ public class User {
         return this.points;
         
     } public void setStatus() {
-       if (points > 1000) 
+       if (getPoints() > 1000) 
            status = "GOLD";
        else status = "SILVER";
            
-           }  
+           } public String getStatus(){
+        return this.status;
+        
+    } 
 }
