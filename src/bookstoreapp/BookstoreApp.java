@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -46,11 +47,11 @@ public class BookstoreApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        Text loginTitle = new Text("Login");
-        loginTitle.setFont(Font.font("Arial", FontWeight.NORMAL,20));
-        Label userName = new Label("User Name: ");
+        Text loginTitle = new Text("Welcome to JavaReads!");
+        loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
+        Label userName = new Label("Username: ");
         Label password = new Label("Password: ");
-        
+
         TextField nameInput = new TextField();
         PasswordField passInput = new PasswordField();
         
