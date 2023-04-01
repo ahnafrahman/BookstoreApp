@@ -46,9 +46,9 @@ public class BookstoreApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        Text loginTitle = new Text("Welcome to JavaReads");
+        Text loginTitle = new Text("Welcome to JavaReads!");
         loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
-        Label userName = new Label("User Name: ");
+        Label userName = new Label("Username: ");
         Label password = new Label("Password: ");
         
         TextField nameInput = new TextField();
@@ -74,8 +74,9 @@ public class BookstoreApp extends Application {
  
         @Override
         public void handle(ActionEvent e) {
-            if(nameInput.getText().equals(null) || passInput.getText().equals(null)){
-                nullInfo.setText("Please enter information");
+            if(nameInput.getText().equals("") || passInput.getText().equals("")){
+                nullInfo.setFill(Color.FIREBRICK);
+                nullInfo.setText("Please enter your information.");
             }
                 
             else if(nameInput.getText().equals("admin") && passInput.getText().equals("admin"))
