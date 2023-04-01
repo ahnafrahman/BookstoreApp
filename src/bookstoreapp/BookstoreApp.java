@@ -46,8 +46,8 @@ public class BookstoreApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        Text loginTitle = new Text("Login");
-        loginTitle.setFont(Font.font("Arial", FontWeight.NORMAL,20));
+        Text loginTitle = new Text("Welcome to JavaReads");
+        loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
         Label userName = new Label("User Name: ");
         Label password = new Label("Password: ");
         
