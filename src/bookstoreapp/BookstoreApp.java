@@ -16,7 +16,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import static javafx.scene.paint.Color.color;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -30,25 +33,13 @@ public class BookstoreApp extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
         
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-
-        
-        btn.setOnAction(new EventHandler<ActionEvent>() {
             
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        
         Scene scene = new Scene(grid, 300, 250);
         
         primaryStage.setTitle("BookStoreApp");
@@ -56,7 +47,7 @@ public class BookstoreApp extends Application {
         primaryStage.show();
         
         Text loginTitle = new Text("Login");
-        loginTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL,20));
+        loginTitle.setFont(Font.font("Arial", FontWeight.NORMAL,20));
         Label userName = new Label("User Name: ");
         Label password = new Label("Password: ");
         
@@ -68,6 +59,31 @@ public class BookstoreApp extends Application {
         grid.add(nameInput,1,1);
         grid.add(password,0,2);
         grid.add(passInput,1,2);
+        
+        
+        Button signIn = new Button("Sign in");
+        HBox hbSignIn = new HBox(10);
+        hbSignIn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbSignIn.getChildren().add(signIn);
+        grid.add(hbSignIn, 1, 4);
+        
+        Text nullInfo = new Text();
+        grid.add(nullInfo,1,6);
+        
+        signIn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+        @Override
+        public void handle(ActionEvent e) {
+            if(nameInput.getText().equals(null) || passInput.getText().equals(null)){
+                nullInfo.setText("Please enter information");
+            }
+                
+            else if(nameInput.getText().equals("admin") && passInput.getText().equals("admin"))
+                System.out.println("OWNER");
+            else
+                System.out.println("CUSTOMER");
+        }
+        });
     }
 
     /**
