@@ -49,7 +49,7 @@ public class BookstoreApp extends Application {
         
         Text loginTitle = new Text("Welcome to JavaReads!");
         loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
-        Label userName = new Label("Username: ");
+        Label userName = new Label("Userame: ");
         Label password = new Label("Password: ");
 
         TextField nameInput = new TextField();
@@ -75,7 +75,8 @@ public class BookstoreApp extends Application {
  
         @Override
         public void handle(ActionEvent e) {
-            if(nameInput.getText().equals(null) || passInput.getText().equals(null)){
+            if(nameInput.getText().equals("") || passInput.getText().equals("")){
+                nullInfo.setFill(Color.FIREBRICK);
                 nullInfo.setText("Please enter information");
             }
                 
