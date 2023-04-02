@@ -128,7 +128,7 @@ public class BookstoreApp extends Application {
            
         @Override
         public void handle(ActionEvent e) {
-            primaryStage.setScene(customerList());
+            primaryStage.setScene(customerList(scene, primaryStage));
         }
         });   
         
@@ -140,7 +140,7 @@ public class BookstoreApp extends Application {
         primaryStage.show();
     }
     
-    public Scene customerList(){
+    public Scene customerList(Scene scene,Stage primaryStage){
         VBox cusList = new VBox();
         TableView table = new TableView();
         TableColumn<Customer, String> column1= new TableColumn<>("Name");
@@ -152,8 +152,36 @@ public class BookstoreApp extends Application {
         TableColumn<Customer, String> column3= new TableColumn<>("Points");
         table.getColumns().add(column3);
         
+        Button add = new Button("Add");
+        Button delete = new Button("Delete");
+        Button back = new Button("Back");
+        
         Scene customerList = new Scene(cusList,300,250);
-        cusList.getChildren().add(table);
+        Label userName = new Label("Username: ");
+        Label password = new Label("Password: ");
+        
+        TextField nameInput = new TextField();
+        PasswordField passInput = new PasswordField();
+        
+        cusList.getChildren().addAll(table,userName,nameInput,password,passInput,add,delete,back);
+        
+        back.setOnAction(new EventHandler<ActionEvent>() {           
+            
+        @Override
+        public void handle(ActionEvent e) {
+            primaryStage.setScene(scene);
+        }
+        });   
+        
+        add.setOnAction(new EventHandler<ActionEvent>() {           
+            
+        @Override
+        public void handle(ActionEvent e) {
+            Owner owner = new Owner();
+            owner.addNewCustomer();
+        }
+        });   
+        
         return customerList;
     }
     
