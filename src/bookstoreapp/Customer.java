@@ -33,6 +33,9 @@ public class Customer {
         this.points += pointsToAdd;
         setCustomerStatus(this.points);
     }
+    public String getStatus(){
+        return this.CustomerStatus;
+    }
     
     //Helper
     
