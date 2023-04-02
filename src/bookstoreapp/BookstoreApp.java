@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 public class BookstoreApp extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception{
         
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -70,10 +70,11 @@ public class BookstoreApp extends Application {
         Text nullInfo = new Text();
         grid.add(nullInfo,1,6);
         
-        signIn.setOnAction(new EventHandler<ActionEvent>() {
- 
-        @Override
-        public void handle(ActionEvent e) {
+//        signIn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            
+//        @Override
+//        public void handle(ActionEvent e) {
             if(nameInput.getText().equals("") || passInput.getText().equals("")){
                 nullInfo.setFill(Color.FIREBRICK);
                 nullInfo.setText("Please enter your information.");
@@ -81,12 +82,27 @@ public class BookstoreApp extends Application {
                 
             else if(nameInput.getText().equals("admin") && passInput.getText().equals("admin"))
                 System.out.println("OWNER");
-            else
+            else{
                 System.out.println("CUSTOMER");
-        }
-        });
+                signIn.setOnAction(e ->primaryStage.setScene(customerScreen()));
+               
+            }
+//        }
+//        });
         
         
+    }
+    
+    public Scene customerScreen(){
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+        Text customer = new Text("customer");
+        grid.getChildren().add(customer);
+        Scene customerScene = new Scene(grid,600,800);
+        return customerScene; 
     }
     
     
