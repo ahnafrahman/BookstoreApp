@@ -35,6 +35,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.collections.ObservableList;
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 //public class BookstoreApp extends Application {
 //    
 //    private final Owner owner = new Owner();
@@ -411,7 +414,7 @@ public class Main extends Application {
         booksTable.setFocusModel(null);
 
         Font font = new Font(14);
-        Text welcomeMsg = new Text("Welcome, " + currentCustomer.getUsername() + ".");
+        Text welcomeMsg = new Text("Welcome, " + currentCustomer.getNameInput() + ".");
         welcomeMsg.setFont(font);
         Text status1 = new Text(" Status: ");
         status1.setFont(font);
