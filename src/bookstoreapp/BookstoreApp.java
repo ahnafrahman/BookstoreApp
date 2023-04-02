@@ -56,9 +56,9 @@ public class BookstoreApp extends Application {
         owner.setAlignment(Pos.CENTER);
         owner.setPadding(new Insets(25, 25, 25, 25));
         
-        Scene scene = new Scene(grid, 300, 250);
-        Scene customerScene = new Scene(l2,300,250);
-        Scene ownerScene = new Scene(owner,300,250);
+        Scene scene = new Scene(grid, 650, 550);
+        Scene customerScene = new Scene(l2,650 ,550);
+        Scene ownerScene = new Scene(owner,650, 550);
         
         Text loginTitle = new Text("Welcome to JavaReads!");
         loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
@@ -66,8 +66,10 @@ public class BookstoreApp extends Application {
         Label password = new Label("Password: ");
          
         TextField nameInput = new TextField();
-        PasswordField passInput = new PasswordField();
+        nameInput.setPrefWidth(50);
         
+        PasswordField passInput = new PasswordField();
+
         grid.getChildren().add(loginTitle);
         grid.getChildren().add(userName);
         grid.getChildren().add(nameInput);
@@ -87,11 +89,7 @@ public class BookstoreApp extends Application {
         
         Text nullInfo = new Text();
         grid.getChildren().add(nullInfo);
-        
-        
-         
-        
-        
+   
         Label customer = new Label("customer");
         l2.getChildren().addAll(customer,button2);
         
@@ -102,8 +100,6 @@ public class BookstoreApp extends Application {
         owner.getChildren().addAll(bookButton,cusButton,logoutButton);
         
         signIn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            
         @Override
         public void handle(ActionEvent e) {
             if(nameInput.getText().equals("") || passInput.getText().equals("")){
@@ -122,19 +118,12 @@ public class BookstoreApp extends Application {
         }
         });   
         
-        
-        
         cusButton.setOnAction(new EventHandler<ActionEvent>() {
-           
         @Override
         public void handle(ActionEvent e) {
             primaryStage.setScene(customerList(scene, primaryStage));
         }
-        });   
-        
-        
-        
-        
+        });
         primaryStage.setTitle("BookStoreApp");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -156,7 +145,7 @@ public class BookstoreApp extends Application {
         Button delete = new Button("Delete");
         Button back = new Button("Back");
         
-        Scene customerList = new Scene(cusList,300,250);
+        Scene customerList = new Scene(cusList,650, 550);
         Label userName = new Label("Username: ");
         Label password = new Label("Password: ");
         
@@ -165,23 +154,22 @@ public class BookstoreApp extends Application {
         
         cusList.getChildren().addAll(table,userName,nameInput,password,passInput,add,delete,back);
         
-        back.setOnAction(new EventHandler<ActionEvent>() {           
-            
+        back.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent e) {
             primaryStage.setScene(scene);
         }
+        
         });   
         
-        add.setOnAction(new EventHandler<ActionEvent>() {           
-            
+        add.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent e) {
             Owner owner = new Owner();
             owner.addNewCustomer();
         }
-        });   
         
+        });
         return customerList;
     }
     
@@ -210,8 +198,6 @@ public class BookstoreApp extends Application {
         }
     }
     
-    
-
     /**
      * @param args the command line arguments
      */
