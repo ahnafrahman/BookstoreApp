@@ -205,7 +205,7 @@ import java.io.IOException;
 //    }
 //    
 //}
-public class Main extends Application {
+public class BookstoreApp extends Application {
 
     private final Owner owner = new Owner();
     private Customer currentCustomer;
@@ -227,7 +227,7 @@ public class Main extends Application {
     ObservableList<Book> books = FXCollections.observableArrayList();
 
     public ObservableList<Book> addBooks(){
-        books.addAll(Owner.books);
+        books.addAll(Owner.bookList);
         return books;
     }
 
@@ -278,7 +278,7 @@ public class Main extends Application {
 
         logoutButton.setOnAction(e -> {
             primaryStage.setScene(new Scene(loginScreen(false), 605, 550));
-            for(Book b: Owner.books){
+            for(Book b: Owner.bookList){
                 b.setSelect(new CheckBox());
             }
             userTextField.clear();
@@ -292,7 +292,7 @@ public class Main extends Application {
 
         pointsBuyButton.setOnAction(e -> {
             boolean bookSelected = false;
-            for(Book b: Owner.books) {
+            for(Book b: Owner.bookList) {
                 if (b.getSelect().isSelected()) {
                     bookSelected = true;
                 }
@@ -308,7 +308,7 @@ public class Main extends Application {
 
         buyButton.setOnAction(e -> {
             boolean bookSelected = false;
-            for(Book b: Owner.books) {
+            for(Book b: Owner.bookList) {
                 if (b.getSelect().isSelected()) {
                     bookSelected = true;
                 }
@@ -324,7 +324,7 @@ public class Main extends Application {
                 files.bookFileReset();
                 files.customerFileReset();
                 System.out.println("Files reset");
-                files.bookFileWrite(Owner.books);
+                files.bookFileWrite(Owner.bookList);
                 files.customerFileWrite(owner.getCustomers());
                 System.out.println("Files updated with current array data");
             } catch (IOException exception) {
