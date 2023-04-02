@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 //public class BookstoreApp extends Application {
@@ -646,7 +647,7 @@ public class Main extends Application {
         addButton.setOnAction(e -> {
             try {
                 double price = Math.round((Double.parseDouble(addBookPrice.getText()))*100);
-                Owner.books.add(new Book(addBookTittle.getText(), price/100));
+                Owner.bookList.add(new Book(addBookTittle.getText(), price/100));
                 //makes new book and adds it to arraylist
                 booksTable.getItems().clear(); //refresh page so new books can be accessed
                 booksTable.setItems(addBooks());
@@ -666,7 +667,7 @@ public class Main extends Application {
         deleteButton.setOnAction(e -> {
             Book selectedItem = booksTable.getSelectionModel().getSelectedItem(); //selects row highlighted
             booksTable.getItems().remove(selectedItem); //removes from table view as soon as delete pressed
-            Owner.books.remove(selectedItem); //actually removes from the arraylist
+            Owner.bookList.remove(selectedItem); //actually removes from the arraylist
         });
 
 
