@@ -34,11 +34,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.collections.ObservableList;
 /**
  *
  * @author ahnaf
  */
 public class BookstoreApp extends Application {
+    
+    private final Owner owner = new Owner();
     
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -122,6 +125,7 @@ public class BookstoreApp extends Application {
         @Override
         public void handle(ActionEvent e) {
             primaryStage.setScene(customerList(scene, primaryStage));
+            primaryStage.show();
         }
         });
         primaryStage.setTitle("BookStoreApp");
@@ -140,19 +144,19 @@ public class BookstoreApp extends Application {
         
         TableColumn<Customer, String> column3= new TableColumn<>("Points");
         table.getColumns().add(column3);
-        
+        table.setItems(customers);
         Button add = new Button("Add");
         Button delete = new Button("Delete");
         Button back = new Button("Back");
         
-        Scene customerList = new Scene(cusList,650, 550);
+        
         Label userName = new Label("Username: ");
         Label password = new Label("Password: ");
         
         TextField nameInput = new TextField();
         PasswordField passInput = new PasswordField();
         
-        cusList.getChildren().addAll(table,userName,nameInput,password,passInput,add,delete,back);
+       
         
         back.setOnAction(new EventHandler<ActionEvent>() {
         @Override
@@ -162,16 +166,23 @@ public class BookstoreApp extends Application {
         
         });   
         
-        add.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent e) {
-            Owner owner = new Owner();
-            owner.addNewCustomer();
-        }
+        add.setOnAction((ActionEvent e) -> {
+            customers.add(new Customer(nameInput.getText(),passInput.getText(),0));
+         });
+ 
         
-        });
+        cusList.getChildren().addAll(table,userName,nameInput,password,passInput,add,delete,back);
+        Scene customerList = new Scene(cusList,650, 550);
         return customerList;
     }
+    
+    
+    ObservableList<Customer> customers = FXCollections.observableArrayList();
+//    public ObservableList<Customer> addCustomers(){
+//        customers.addAll(owner.getCustomers());
+//        return customers;
+//    }
+    
     
      public static void SaveCustomers(String thing){         //This function adds the books created to the Books.txt file
         
