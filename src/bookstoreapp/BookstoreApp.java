@@ -742,7 +742,7 @@ public class BookstoreApp extends Application {
             }
 
             if(!(addUsername.getText().equals("") || addPassword.getText().equals("")) && !duplicate) {
-                owner.addCustomer(new Customer(addUsername.getText(), addPassword.getText())); //for the actual arraylist
+                owner.addCustomer(new Customer(addUsername.getText(), addPassword.getText(),0)); //for the actual arraylist
                 customersTable.getItems().clear(); //this is to refresh the table with actual values instead of visual ones
                 customersTable.setItems(addCustomers());
                 core.getChildren().remove(customerAddErr); //remove any previous error text messages
