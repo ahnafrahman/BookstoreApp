@@ -214,7 +214,7 @@ public class BookstoreApp extends Application {
     Button loginButton = new Button("Login");
     Button booksButton = new Button("Books");
     Button customersButton = new Button("Customers");
-    Button logoutButton = new Button("Logout");
+    Button logoutButton = new Button("Log out");
     Button backButton = new Button("\uD83E\uDC60");
     Button buyButton = new Button("Buy");
     Button pointsBuyButton = new Button("Redeem points & Buy");
@@ -242,7 +242,7 @@ public class BookstoreApp extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        primaryStage.setTitle("Bookstore App");
+        primaryStage.setTitle("Bookstore");
         primaryStage.getIcons().add(new Image("file:src/bookPic.png"));
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(loginScreen(false), 605, 550));
@@ -261,23 +261,23 @@ public class BookstoreApp extends Application {
             boolean logged_in = false;
 
             if(userTextField.getText().equals(owner.getUsername()) && passTextField.getText().equals(owner.getUsername())) {
-                primaryStage.setScene(new Scene(ownerStartScreen(), 605, 550));
+                primaryStage.setScene(new Scene(ownerStartScreen(), 650, 550));
                 logged_in = true;
             }
             for(Customer c: owner.getCustomers()) {
                 if (userTextField.getText().equals(c.getNameInput()) && passTextField.getText().equals(c.getPassInput())) {
                     currentCustomer = c;
-                    primaryStage.setScene(new Scene(customerHomeScreen(0), 605, 550));
+                    primaryStage.setScene(new Scene(customerHomeScreen(0), 650, 600));
                     logged_in = true;
                 }
             }
             if(!logged_in) {
-                primaryStage.setScene(new Scene(loginScreen(true), 605, 550));
+                primaryStage.setScene(new Scene(loginScreen(true), 650, 550));
             }
         });
 
         logoutButton.setOnAction(e -> {
-            primaryStage.setScene(new Scene(loginScreen(false), 605, 550));
+            primaryStage.setScene(new Scene(loginScreen(false), 650, 550));
             for(Book b: Owner.bookList){
                 b.setSelect(new CheckBox());
             }
@@ -285,10 +285,10 @@ public class BookstoreApp extends Application {
             passTextField.clear();
         });
 
-        booksButton.setOnAction(e -> primaryStage.setScene(new Scene(booksTableScreen(), 605, 550)));
+        booksButton.setOnAction(e -> primaryStage.setScene(new Scene(booksTableScreen(), 650, 550)));
 
-        customersButton.setOnAction(e -> primaryStage.setScene(new Scene(customerTableScreen(), 605, 550)));
-        backButton.setOnAction(e -> primaryStage.setScene(new Scene(ownerStartScreen(), 605, 550)));
+        customersButton.setOnAction(e -> primaryStage.setScene(new Scene(customerTableScreen(), 650, 550)));
+        backButton.setOnAction(e -> primaryStage.setScene(new Scene(ownerStartScreen(), 650, 550)));
 
         pointsBuyButton.setOnAction(e -> {
             boolean bookSelected = false;
@@ -298,11 +298,11 @@ public class BookstoreApp extends Application {
                 }
             }
             if(!bookSelected){
-                primaryStage.setScene(new Scene(customerHomeScreen(1), 605, 550));
+                primaryStage.setScene(new Scene(customerHomeScreen(1), 650, 550));
             } else if(currentCustomer.getPoints() == 0){
-                primaryStage.setScene(new Scene(customerHomeScreen(2), 605, 550));
+                primaryStage.setScene(new Scene(customerHomeScreen(2), 650, 550));
             } else if(currentCustomer.getPoints() != 0){
-                primaryStage.setScene(new Scene(checkoutScreen(true), 605, 550));
+                primaryStage.setScene(new Scene(checkoutScreen(true), 650, 550));
             }
         });//need this to not open checkout screen unless customer has picked a book and has points on account
 
@@ -314,8 +314,8 @@ public class BookstoreApp extends Application {
                 }
             }
             if(bookSelected){
-                primaryStage.setScene(new Scene(checkoutScreen(false), 605, 550));
-            } else primaryStage.setScene(new Scene(customerHomeScreen(1), 605, 550));
+                primaryStage.setScene(new Scene(checkoutScreen(false), 650, 550));
+            } else primaryStage.setScene(new Scene(customerHomeScreen(1), 650, 550));
         }); //need this to not open checkout screen unless a book is selected
 
         primaryStage.setOnCloseRequest(e -> {
@@ -338,19 +338,19 @@ public class BookstoreApp extends Application {
         {
             buyButton.setStyle("-fx-background-color: #fa940c;");
             pointsBuyButton.setStyle("-fx-background-color: #fa940c;");
-            customersButton.setStyle("-fx-background-color: #a07855;" + "-fx-font-size:25;" + "-fx-background-radius: 10;");
-            booksButton.setStyle("-fx-background-color: #a07855;" + "-fx-font-size:25;" + "-fx-background-radius: 10;");
+            customersButton.setStyle("-fx-background-color: #785DED;" + "-fx-font-size:25;" + "-fx-background-radius: 10;");
+            booksButton.setStyle("-fx-background-color: #785DED;" + "-fx-font-size:25;" + "-fx-background-radius: 10;");
             logoutButton.setStyle("-fx-background-color: #fa940c;");
-            backButton.setStyle("-fx-background-color: #E1C699;" + "-fx-font-size:14;");
+            backButton.setStyle("-fx-background-color: #4119e6;" + "-fx-font-size:14;");
             loginButton.setStyle("-fx-background-color: #fa940c;");
 
-            customersTable.setStyle("-fx-control-inner-background: #a07855;" +
-                    "-fx-selection-bar: #fa940c; -fx-selection-bar-non-focused: #fa940c;" + "-fx-border-color: #a07855;" +
-                    "-fx-table-cell-border-color: #a07855;" + "-fx-background-color: #a07855;");
+            customersTable.setStyle("-fx-control-inner-background: #785DED;" +
+                    "-fx-selection-bar: #fa940c; -fx-selection-bar-non-focused: #fa940c;" + "-fx-border-color: #785DED;" +
+                    "-fx-table-cell-border-color: #785DED;" + "-fx-background-color: #785DED;");
 
-            booksTable.setStyle("-fx-control-inner-background: #a07855;" + "-fx-border-color: #a07855;" +
+            booksTable.setStyle("-fx-control-inner-background: #785DED;" + "-fx-border-color: #785DED;" +
                     "-fx-selection-bar: #fa940c; -fx-selection-bar-non-focused: #fa940c;" +
-                    "-fx-table-cell-border-color: #a07855;" + "-fx-background-color: #a07855;" + "-fx-column-header-background: #a07855;");
+                    "-fx-table-cell-border-color: #785DED;" + "-fx-background-color: #785DED;" + "-fx-column-header-background: #785DED;");
         }
     }
 
@@ -371,11 +371,11 @@ public class BookstoreApp extends Application {
 
         VBox loginBox = new VBox();
         loginBox.setPadding(new Insets(30,65,45,65));
-        loginBox.setStyle("-fx-background-color: #A07855;" + "-fx-background-radius: 10 10 10 10;");
+        loginBox.setStyle("-fx-background-color: #785DED;" + "-fx-background-radius: 10 10 10 10;");
         loginBox.setSpacing(6);
         Text user = new Text("Username");
-        userTextField.setStyle("-fx-background-color: #b58860;");
-        passTextField.setStyle("-fx-background-color: #b58860;");
+        userTextField.setStyle("-fx-background-color: #4119e6;");
+        passTextField.setStyle("-fx-background-color: #4119e6;");
         Text pass = new Text("Password");
         loginButton.setMinWidth(174);
         loginBox.getChildren().addAll(user, userTextField, pass, passTextField, loginButton);
@@ -388,7 +388,7 @@ public class BookstoreApp extends Application {
 
         VBox bg = new VBox();
         bg.getChildren().addAll(header, loginBox);
-        bg.setStyle("-fx-background-color: #E1C699;");
+        bg.setStyle("-fx-background-color: #4119e6;");
         bg.setPadding(new Insets(80, 280, 200, 150));
         bg.setSpacing(80);
 
@@ -460,7 +460,7 @@ public class BookstoreApp extends Application {
         }
         Text warning = new Text(errMsg);
         warning.setFill(Color.RED);
-        vbox.setStyle("-fx-background-color: #E1C699;");
+        vbox.setStyle("-fx-background-color: #4119e6;");
         vbox.setSpacing(10);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(40, 200, 30, 100));
@@ -563,7 +563,7 @@ public class BookstoreApp extends Application {
         bottom.getChildren().addAll(info, logoutButton);
 
         VBox screen = new VBox();
-        screen.setStyle("-fx-background-color: #E1C699;");
+        screen.setStyle("-fx-background-color: #4119e6;");
         screen.setPadding(new Insets(60,105,500,100));
         screen.setAlignment(Pos.CENTER);
         screen.setSpacing(10);
@@ -576,7 +576,7 @@ public class BookstoreApp extends Application {
 
     public VBox ownerStartScreen() {
         VBox osc = new VBox();
-        osc.setStyle("-fx-background-color: #E1C699;");
+        osc.setStyle("-fx-background-color: #4119e6;");
         osc.setAlignment(Pos.CENTER);
         osc.setSpacing(100);
         osc.setPadding(new Insets(80,0,30,0));
@@ -623,8 +623,8 @@ public class BookstoreApp extends Application {
         final TextField addBookPrice = new TextField();
         addBookPrice.setMaxWidth(priceColumn.getPrefWidth());
         addBookPrice.setPromptText("Price");
-        addBookTittle.setStyle("-fx-background-color: #b58860;");
-        addBookPrice.setStyle("-fx-background-color: #b58860;");
+        addBookTittle.setStyle("-fx-background-color: #4119e6;");
+        addBookPrice.setStyle("-fx-background-color: #4119e6;");
 
         VBox core = new VBox();
         final Button addButton = new Button("Add");
@@ -673,7 +673,7 @@ public class BookstoreApp extends Application {
         core.getChildren().addAll(label, booksTable, hb);
 
         VBox vbox = new VBox();
-        vbox.setStyle("-fx-background-color: #E1C699;");
+        vbox.setStyle("-fx-background-color: #4119e6;");
         vbox.setPadding(new Insets(0, 200, 60, 0));
         vbox.setAlignment(Pos.CENTER);
         vbox.getChildren().addAll(back, core);
@@ -720,8 +720,8 @@ public class BookstoreApp extends Application {
         final TextField addPassword = new TextField();
         addPassword.setMaxWidth(passwordCol.getPrefWidth());
         addPassword.setPromptText("Password");
-        addPassword.setStyle("-fx-background-color: #b58860;");
-        addUsername.setStyle("-fx-background-color: #b58860;");
+        addPassword.setStyle("-fx-background-color: #4119e6;");
+        addUsername.setStyle("-fx-background-color: #4119e6;");
 
         VBox core = new VBox();
         Text customerAddErr = new Text("Customer already exists!");
@@ -774,7 +774,7 @@ public class BookstoreApp extends Application {
         core.getChildren().addAll(label, customersTable, hb);
 
         VBox vbox = new VBox();
-        vbox.setStyle("-fx-background-color: #E1C699;");
+        vbox.setStyle("-fx-background-color: #4119e6;");
         vbox.setPadding(new Insets(0, 150, 60, 0));
         vbox.getChildren().addAll(back, core);
         vbox.setAlignment(Pos.CENTER);
