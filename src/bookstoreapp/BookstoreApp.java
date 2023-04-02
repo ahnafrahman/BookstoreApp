@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -38,16 +40,20 @@ public class BookstoreApp extends Application {
         
         VBox grid = new VBox();
         VBox l2 = new VBox();
+        VBox owner = new VBox();
+        
         grid.setAlignment(Pos.CENTER);
 //        grid.setHgap(10);
 //        grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         l2.setAlignment(Pos.CENTER);
         l2.setPadding(new Insets(25, 25, 25, 25));
+        owner.setAlignment(Pos.CENTER);
+        owner.setPadding(new Insets(25, 25, 25, 25));
         
         Scene scene = new Scene(grid, 300, 250);
         Scene customerScene = new Scene(l2,300,250);
-        
+        Scene ownerScene = new Scene(owner,300,250);
         
         Text loginTitle = new Text("Welcome to JavaReads!");
         loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
@@ -84,6 +90,12 @@ public class BookstoreApp extends Application {
         Label customer = new Label("customer");
         l2.getChildren().addAll(customer,button2);
         
+        Button bookButton = new Button("Books");
+        Button cusButton = new Button("Customers");
+        Button logoutButton = new Button("Logout");
+        
+        owner.getChildren().addAll(bookButton,cusButton,logoutButton);
+        
         signIn.setOnAction(new EventHandler<ActionEvent>() {
             
             
@@ -94,8 +106,10 @@ public class BookstoreApp extends Application {
                 nullInfo.setText("Please enter your information.");
             }
              
-            else if(nameInput.getText().equals("admin") && passInput.getText().equals("admin"))
+            else if(nameInput.getText().equals("admin") && passInput.getText().equals("admin")){
                 System.out.println("OWNER");
+                primaryStage.setScene(ownerScene);
+            }
             else{
                 System.out.println("CUSTOMER");
                 primaryStage.setScene(customerScene);
@@ -103,21 +117,40 @@ public class BookstoreApp extends Application {
         }
         });   
         
+        
+        
+        cusButton.setOnAction(new EventHandler<ActionEvent>() {
+           
+        @Override
+        public void handle(ActionEvent e) {
+            primaryStage.setScene(customerList());
+        }
+        });   
+        
+        
+        
+        
         primaryStage.setTitle("BookStoreApp");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     
-//    public Scene customerScreen(){
-//        VBox l2 = new VBox();
-//        l2.setAlignment(Pos.CENTER);
-//        
-//        Text customer = new Text("customer");
-//        
-//        Scene customerScene = new Scene(l2,600,800);
-//        System.out.println("works");
-//        return customerScene; 
-//    }
+    public Scene customerList(){
+        VBox cusList = new VBox();
+        TableView table = new TableView();
+        TableColumn<Customer, String> column1= new TableColumn<>("Name");
+        table.getColumns().add(column1);
+        
+        TableColumn<Customer, String> column2= new TableColumn<>("Password");
+        table.getColumns().add(column2);
+        
+        TableColumn<Customer, String> column3= new TableColumn<>("Points");
+        table.getColumns().add(column3);
+        
+        Scene customerList = new Scene(cusList,300,250);
+        cusList.getChildren().add(table);
+        return customerList;
+    }
     
     
     
