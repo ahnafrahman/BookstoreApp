@@ -22,13 +22,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import javafx.scene.paint.Color;
 import static javafx.scene.paint.Color.color;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import java.io.IOException;
 /**
  *
  * @author ahnaf
@@ -152,6 +157,30 @@ public class BookstoreApp extends Application {
         return customerList;
     }
     
+     public static void SaveCustomers(String thing){         //This function adds the books created to the Books.txt file
+        
+        FileOutputStream fos = null;
+
+        try {
+            fos = new FileOutputStream("Customers.txt", true);          //Open the file
+            
+            byte[] s_array = thing.getBytes();                      //Turn the string into bytes
+            fos.write(s_array);                                     //Write the bytes
+
+        } catch (FileNotFoundException ex) {                        //Throws file not found exception
+            System.out.println("Customers not found");
+        } catch (IOException ex) {
+            System.out.println("IOException on SaveBooks");         //Throws IO exception
+        }
+        finally{
+            try {
+                fos.close();                                        //Close the file
+            } catch (IOException ex) {                              //Throws couldn't close file exception
+                System.out.println("Customers not closed");
+
+            }
+        }
+    }
     
     
 
