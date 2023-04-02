@@ -1,8 +1,7 @@
 package bookstoreapp;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Owner{
    
@@ -36,27 +35,6 @@ public class Owner{
     @SuppressWarnings("unchecked")
     public ArrayList<Customer> getCustomers(){
         return (ArrayList<Customer>) customerList.clone();
-    }
-
-  public void addNewCustomer() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter new username: ");
-        String username = scanner.nextLine();
-
-        System.out.print("Enter new password: ");
-        String password = scanner.nextLine();
-
-        try {
-            FileWriter writer = new FileWriter("Customer.txt");
-            writer.write("Username: " + username + "\n");
-            writer.write("Password: " + password + "\n");
-            writer.close();
-            System.out.println("Customer credentials written to file successfully.");
-        } catch (IOException e) {
-            System.out.println("An error occurred while writing to file.");
-            e.printStackTrace();
-        }
     }
 
 }
