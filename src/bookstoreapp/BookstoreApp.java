@@ -477,7 +477,7 @@ public class Main extends Application {
         int pointsEarned, i = 0, bookCount = 0;
         String[][] booksBought = new String[25][2];
 
-        for(Book b: Owner.books){
+        for(Book b: Owner.bookList){
             if(b.getSelect().isSelected()){
                 subtotal += b.getPrice();
                 booksBought[i][0] = b.getTitle();
@@ -570,7 +570,7 @@ public class Main extends Application {
         screen.getChildren().addAll(header, receipt, bottom);
 
         cos.getChildren().addAll(screen);
-        Owner.books.removeIf(b -> b.getSelect().isSelected());
+        Owner.bookList.removeIf(b -> b.getSelect().isSelected());
         return cos;
     }//complete
 
@@ -732,7 +732,7 @@ public class Main extends Application {
             boolean duplicate = false;
 
             for(Customer c: owner.getCustomers()){
-                if((c.getUsername().equals(addUsername.getText()) && c.getPassword().equals(addPassword.getText())) ||
+                if((c.getNameInput().equals(addUsername.getText()) && c.getPassInput().equals(addPassword.getText())) ||
                         (addUsername.getText().equals(owner.getUsername()) && addPassword.getText().equals(owner.getPassword()))){
                     duplicate = true;
                     if(!core.getChildren().contains(customerAddErr)){
