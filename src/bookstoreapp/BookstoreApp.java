@@ -53,7 +53,7 @@ public class BookstoreApp extends Application {
         loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
         Label userName = new Label("Username: ");
         Label password = new Label("Password: ");
-        
+         
         TextField nameInput = new TextField();
         PasswordField passInput = new PasswordField();
         
