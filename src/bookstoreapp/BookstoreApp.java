@@ -245,7 +245,7 @@ public class BookstoreApp extends Application {
         primaryStage.setTitle("JavaReads: A Bookstore App");
         primaryStage.getIcons().add(new Image("file:src/bookPic.png"));
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(loginScreen(false), 605, 550));
+        primaryStage.setScene(new Scene(loginScreen(false), 650, 550));
         primaryStage.show();
         System.out.println("Opened bookstore application");
         
@@ -268,7 +268,7 @@ public class BookstoreApp extends Application {
             for(Customer c: owner.getCustomers()) {
                 if (userTextField.getText().equals(c.getNameInput()) && passTextField.getText().equals(c.getPassInput())) {
                     currentCustomer = c;
-                    primaryStage.setScene(new Scene(customerHomeScreen(0), 650, 600));
+                    primaryStage.setScene(new Scene(customerHomeScreen(0), 650, 550));
                     logged_in = true;
                 }
             }
@@ -362,10 +362,9 @@ public class BookstoreApp extends Application {
         Image rawLogo = new Image("file:src/bookPic.png");
         ImageView logo = new ImageView(rawLogo);
         logo.setFitHeight(50);
-        logo.setFitWidth(50);
-        Label brand = new Label("\uD835\uDD6D\uD835\uDD94\uD835\uDD94\uD835\uDD90\uD835" +
-                "\uDD98\uD835\uDD99\uD835\uDD94\uD835\uDD97\uD835\uDD8A");
-        brand.setFont(new Font("Arial", 35));
+        logo.setFitWidth(50);   
+        Label brand = new Label("\u1D0A\u1D00\u1D20\u1D00\u0280\u1D07\u1D00\u1D05\uA731");
+        brand.setFont(new Font("Cambria", 40));
         header.getChildren().addAll(brand, logo);
         header.setSpacing(15);
         header.setAlignment(Pos.CENTER);
@@ -426,7 +425,7 @@ public class BookstoreApp extends Application {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 
         //Book price column
-        TableColumn<Book, Double> priceColumn = new TableColumn<>("Price");
+        TableColumn<Book, Double> priceColumn = new TableColumn<>("Price ($)");
         priceColumn.setMinWidth(100);
         priceColumn.setStyle("-fx-alignment: CENTER;");
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -506,8 +505,7 @@ public class BookstoreApp extends Application {
         header.setAlignment(Pos.CENTER);
         header.setSpacing(15);
         header.setPadding(new Insets(0,0,25,0));
-        Label brandName = new Label("\uD835\uDD6D\uD835\uDD94\uD835\uDD94\uD835\uDD90\uD835" +
-                "\uDD98\uD835\uDD99\uD835\uDD94\uD835\uDD97\uD835\uDD8A");
+        Label brandName = new Label("\u1D0A\u1D00\u1D20\u1D00\u0280\u1D07\u1D00\u1D05\uA731");
         brandName.setFont(new Font("Arial", 35));
         Image rawLogo = new Image("file:src/bookPic.png");
         ImageView logo = new ImageView(rawLogo);
@@ -618,13 +616,13 @@ public class BookstoreApp extends Application {
         booksTable.setItems(addBooks());
         booksTable.getColumns().addAll(titleColumn, priceColumn);
 
-        final TextField addBookTittle = new TextField();
-        addBookTittle.setPromptText("Title");
-        addBookTittle.setMaxWidth(titleColumn.getPrefWidth());
+        final TextField addBookTitle = new TextField();
+        addBookTitle.setPromptText("Title");
+        addBookTitle.setMaxWidth(titleColumn.getPrefWidth());
         final TextField addBookPrice = new TextField();
         addBookPrice.setMaxWidth(priceColumn.getPrefWidth());
         addBookPrice.setPromptText("Price");
-        addBookTittle.setStyle("-fx-background-color: #cfc7b8;");
+        addBookTitle.setStyle("-fx-background-color: #cfc7b8;");
         addBookPrice.setStyle("-fx-background-color: #cfc7b8;");
 
         VBox core = new VBox();
@@ -636,11 +634,11 @@ public class BookstoreApp extends Application {
         addButton.setOnAction(e -> {
             try {
                 double price = Math.round((Double.parseDouble(addBookPrice.getText()))*100);
-                Owner.bookList.add(new Book(addBookTittle.getText(),Math.abs(price/100)));
+                Owner.bookList.add(new Book(addBookTitle.getText(),Math.abs(price/100)));
                 //makes new book and adds it to arraylist
                 booksTable.getItems().clear(); //refresh page so new books can be accessed
                 booksTable.setItems(addBooks());
-                addBookTittle.clear(); //clears text fields
+                addBookTitle.clear(); //clears text fields
                 addBookPrice.clear();
                 core.getChildren().remove(bookAddErr); //removes a previous Invalid Input error if there was one
             }
@@ -660,7 +658,7 @@ public class BookstoreApp extends Application {
         });
 
 
-        hb.getChildren().addAll(addBookTittle, addBookPrice, addButton, deleteButton);
+        hb.getChildren().addAll(addBookTitle, addBookPrice, addButton, deleteButton);
         hb.setSpacing(3);
         hb.setAlignment(Pos.CENTER);
 

@@ -40,7 +40,7 @@ public class Customer {
     //Helper
     
     private void setCustomerStatus(int points){
-        if (points > 1000) {
+        if (points >= 1000) {
             this.CustomerStatus = "Gold";
         }
         else {
