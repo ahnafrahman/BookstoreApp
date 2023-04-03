@@ -29,7 +29,11 @@ public class Customer {
     }
     
     //Setters
-    public void setPoints(int pointsToAdd){
+    public void setPoints(int points){
+        this.points = points;
+        setCustomerStatus(this.points);
+    }
+    public void addPoints(int pointsToAdd){
         this.points += pointsToAdd;
         setCustomerStatus(this.points);
     }

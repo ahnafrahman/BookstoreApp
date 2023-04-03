@@ -27,184 +27,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import java.io.IOException;
-//public class BookstoreApp extends Application {
-//    
-//    private final Owner owner = new Owner();
-//    
-//    @Override
-//    public void start(Stage primaryStage) throws Exception{
-//        
-//        VBox grid = new VBox();
-//        VBox l2 = new VBox();
-//        VBox owner = new VBox();
-//        
-//        grid.setAlignment(Pos.CENTER);
-////        grid.setHgap(10);
-////        grid.setVgap(10);
-//        grid.setPadding(new Insets(25, 25, 25, 25));
-//        l2.setAlignment(Pos.CENTER);
-//        l2.setPadding(new Insets(25, 25, 25, 25));
-//        owner.setAlignment(Pos.CENTER);
-//        owner.setPadding(new Insets(25, 25, 25, 25));
-//        
-//        Scene scene = new Scene(grid, 650, 550);
-//        Scene customerScene = new Scene(l2,650 ,550);
-//        Scene ownerScene = new Scene(owner,650, 550);
-//        
-//        Text loginTitle = new Text("Welcome to JavaReads!");
-//        loginTitle.setFont(Font.font("Cambria", FontWeight.NORMAL,24));
-//        Label userName = new Label("Username: ");
-//        Label password = new Label("Password: ");
-//         
-//        TextField nameInput = new TextField();
-//        nameInput.setPrefWidth(50);
-//        
-//        PasswordField passInput = new PasswordField();
-//
-//        grid.getChildren().add(loginTitle);
-//        grid.getChildren().add(userName);
-//        grid.getChildren().add(nameInput);
-//        grid.getChildren().add(password);
-//        grid.getChildren().add(passInput);
-//        
-//        
-//        Button signIn = new Button("Sign in");
-//        HBox hbSignIn = new HBox(10);
-//        hbSignIn.setAlignment(Pos.BOTTOM_RIGHT);
-//        hbSignIn.getChildren().add(signIn);
-//        grid.getChildren().add(hbSignIn);
-//        signIn.setOnAction(e -> primaryStage.setScene(customerScene));
-//        
-//        Button button2 = new Button("Backwards");
-//        button2.setOnAction(e -> primaryStage.setScene(scene));
-//        
-//        Text nullInfo = new Text();
-//        grid.getChildren().add(nullInfo);
-//   
-//        Label customer = new Label("customer");
-//        l2.getChildren().addAll(customer,button2);
-//        
-//        Button bookButton = new Button("Books");
-//        Button cusButton = new Button("Customers");
-//        Button logoutButton = new Button("Logout");
-//        
-//        owner.getChildren().addAll(bookButton,cusButton,logoutButton);
-//        
-//        signIn.setOnAction(new EventHandler<ActionEvent>() {
-//        @Override
-//        public void handle(ActionEvent e) {
-//            if(nameInput.getText().equals("") || passInput.getText().equals("")){
-//                nullInfo.setFill(Color.FIREBRICK);
-//                nullInfo.setText("Please enter your information.");
-//            }
-//             
-//            else if(nameInput.getText().equals("admin") && passInput.getText().equals("admin")){
-//                System.out.println("OWNER");
-//                primaryStage.setScene(ownerScene);
-//            }
-//            else{
-//                System.out.println("CUSTOMER");
-//                primaryStage.setScene(customerScene);
-//            }
-//        }
-//        });   
-//        
-//        cusButton.setOnAction(new EventHandler<ActionEvent>() {
-//        @Override
-//        public void handle(ActionEvent e) {
-//            primaryStage.setScene(customerList(scene, primaryStage));
-//            primaryStage.show();
-//        }
-//        });
-//        primaryStage.setTitle("BookStoreApp");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//    }
-//    
-//    public Scene customerList(Scene scene,Stage primaryStage){
-//        VBox cusList = new VBox();
-//        TableView table = new TableView();
-//        TableColumn<Customer, String> column1= new TableColumn<>("Name");
-//        table.getColumns().add(column1);
-//        
-//        TableColumn<Customer, String> column2= new TableColumn<>("Password");
-//        table.getColumns().add(column2);
-//        
-//        TableColumn<Customer, String> column3= new TableColumn<>("Points");
-//        table.getColumns().add(column3);
-//        table.setItems(customers);
-//        Button add = new Button("Add");
-//        Button delete = new Button("Delete");
-//        Button back = new Button("Back");
-//        
-//        
-//        Label userName = new Label("Username: ");
-//        Label password = new Label("Password: ");
-//        
-//        TextField nameInput = new TextField();
-//        PasswordField passInput = new PasswordField();
-//        
-//       
-//        
-//        back.setOnAction(new EventHandler<ActionEvent>() {
-//        @Override
-//        public void handle(ActionEvent e) {
-//            primaryStage.setScene(scene);
-//        }
-//        
-//        });   
-//        
-//        add.setOnAction((ActionEvent e) -> {
-//            customers.add(new Customer(nameInput.getText(),passInput.getText(),0));
-//         });
-// 
-//        
-//        cusList.getChildren().addAll(table,userName,nameInput,password,passInput,add,delete,back);
-//        Scene customerList = new Scene(cusList,650, 550);
-//        return customerList;
-//    }
-//    
-//    
-//    ObservableList<Customer> customers = FXCollections.observableArrayList();
-////    public ObservableList<Customer> addCustomers(){
-////        customers.addAll(owner.getCustomers());
-////        return customers;
-////    }
-//    
-//    
-//     public static void SaveCustomers(String thing){         //This function adds the books created to the Books.txt file
-//        
-//        FileOutputStream fos = null;
-//
-//        try {
-//            fos = new FileOutputStream("Customers.txt", true);          //Open the file
-//            
-//            byte[] s_array = thing.getBytes();                      //Turn the string into bytes
-//            fos.write(s_array);                                     //Write the bytes
-//
-//        } catch (FileNotFoundException ex) {                        //Throws file not found exception
-//            System.out.println("Customers not found");
-//        } catch (IOException ex) {
-//            System.out.println("IOException on SaveBooks");         //Throws IO exception
-//        }
-//        finally{
-//            try {
-//                fos.close();                                        //Close the file
-//            } catch (IOException ex) {                              //Throws couldn't close file exception
-//                System.out.println("Customers not closed");
-//
-//            }
-//        }
-//    }
-//    
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//    
-//}
+
 public class BookstoreApp extends Application {
 
     private final Owner owner = new Owner();
@@ -337,20 +160,20 @@ public class BookstoreApp extends Application {
 
         //css
         {
-            buyButton.setStyle("-fx-background-color: #fa940c;");
-            pointsBuyButton.setStyle("-fx-background-color: #fa940c;");
+            buyButton.setStyle("-fx-background-color: #336699;");
+            pointsBuyButton.setStyle("-fx-background-color: #336699;");
             customersButton.setStyle("-fx-background-color: #B8C0CF;" + "-fx-font-size:25;" + "-fx-background-radius: 10;");
             booksButton.setStyle("-fx-background-color: #B8C0CF;" + "-fx-font-size:25;" + "-fx-background-radius: 10;");
-            logoutButton.setStyle("-fx-background-color: #fa940c;");
+            logoutButton.setStyle("-fx-background-color: #336699;");
             backButton.setStyle("-fx-background-color: #cfc7b8;" + "-fx-font-size:14;");
-            loginButton.setStyle("-fx-background-color: #fa940c;");
+            loginButton.setStyle("-fx-background-color: #336699;");
 
             customersTable.setStyle("-fx-control-inner-background: #B8C0CF;" +
-                    "-fx-selection-bar: #fa940c; -fx-selection-bar-non-focused: #fa940c;" + "-fx-border-color: #B8C0CF;" +
+                    "-fx-selection-bar: #336699; -fx-selection-bar-non-focused: #336699;" + "-fx-border-color: #B8C0CF;" +
                     "-fx-table-cell-border-color: #B8C0CF;" + "-fx-background-color: #B8C0CF;");
 
             booksTable.setStyle("-fx-control-inner-background: #B8C0CF;" + "-fx-border-color: #B8C0CF;" +
-                    "-fx-selection-bar: #fa940c; -fx-selection-bar-non-focused: #fa940c;" +
+                    "-fx-selection-bar: #336699; -fx-selection-bar-non-focused: #336699;" +
                     "-fx-table-cell-border-color: #B8C0CF;" + "-fx-background-color: #B8C0CF;" + "-fx-column-header-background: #B8C0CF;");
         }
     }
@@ -374,8 +197,8 @@ public class BookstoreApp extends Application {
         loginBox.setStyle("-fx-background-color: #B8C0CF;" + "-fx-background-radius: 10 10 10 10;");
         loginBox.setSpacing(6);
         Text user = new Text("Username");
-        userTextField.setStyle("-fx-background-color: #cfc7b8;");
-        passTextField.setStyle("-fx-background-color: #cfc7b8;");
+        userTextField.setStyle("-fx-background-color: #ffffff;");
+        passTextField.setStyle("-fx-background-color: #ffffff;");
         Text pass = new Text("Password");
         loginButton.setMinWidth(174);
         loginBox.getChildren().addAll(user, userTextField, pass, passTextField, loginButton);
@@ -489,17 +312,17 @@ public class BookstoreApp extends Application {
         if(usedPoints){
             if((double)currentCustomer.getPoints()/100 >= subtotal){
                 discount = subtotal;
-                currentCustomer.setPoints(-(int)subtotal*100);
+                currentCustomer.addPoints(-(int)subtotal*100);
             }
             else{
                 discount = ((double)currentCustomer.getPoints()/100);
-                currentCustomer.setPoints(-currentCustomer.getPoints());
+                currentCustomer.addPoints(-currentCustomer.getPoints());
             }
         }else discount = 0;
 
         total = subtotal - discount;
         pointsEarned = (int)total*10;
-        currentCustomer.setPoints(pointsEarned);
+        currentCustomer.addPoints(pointsEarned);
 
         HBox header = new HBox();
         header.setAlignment(Pos.CENTER);
@@ -522,7 +345,7 @@ public class BookstoreApp extends Application {
         receipt.getChildren().addAll(receiptTxt, thickLine);
 
         VBox receiptItems = new VBox();
-        receiptItems.setStyle("-fx-background-color: #d6ba8b;");
+        receiptItems.setStyle("-fx-background-color: #b7ab95;");
         receiptItems.setSpacing(7);
         for (i = 0; i<25; i++) {
             if(booksBought[i][0] != null){
@@ -622,12 +445,12 @@ public class BookstoreApp extends Application {
         final TextField addBookPrice = new TextField();
         addBookPrice.setMaxWidth(priceColumn.getPrefWidth());
         addBookPrice.setPromptText("Price");
-        addBookTitle.setStyle("-fx-background-color: #cfc7b8;");
-        addBookPrice.setStyle("-fx-background-color: #cfc7b8;");
+        addBookTitle.setStyle("-fx-background-color: #ffffff;");
+        addBookPrice.setStyle("-fx-background-color: #ffffff;");
 
         VBox core = new VBox();
         final Button addButton = new Button("Add");
-        addButton.setStyle("-fx-background-color: #fa940c;");
+        addButton.setStyle("-fx-background-color: #336699;");
         Label bookAddErr = new Label("Invalid Input");
         bookAddErr.setTextFill(Color.color(1,0,0));
 
@@ -650,7 +473,7 @@ public class BookstoreApp extends Application {
         });
 
         final Button deleteButton = new Button("Delete");
-        deleteButton.setStyle("-fx-background-color: #fa940c;");
+        deleteButton.setStyle("-fx-background-color: #336699;");
         deleteButton.setOnAction(e -> {
             Book selectedItem = booksTable.getSelectionModel().getSelectedItem(); //selects row highlighted
             booksTable.getItems().remove(selectedItem); //removes from table view as soon as delete pressed
@@ -719,14 +542,14 @@ public class BookstoreApp extends Application {
         final TextField addPassword = new TextField();
         addPassword.setMaxWidth(passwordCol.getPrefWidth());
         addPassword.setPromptText("Password");
-        addPassword.setStyle("-fx-background-color: #cfc7b8;");
-        addUsername.setStyle("-fx-background-color: #cfc7b8;");
+        addPassword.setStyle("-fx-background-color: #ffffff;");
+        addUsername.setStyle("-fx-background-color: #ffffff;");
 
         VBox core = new VBox();
         Text customerAddErr = new Text("Customer already exists!");
         customerAddErr.setFill(Color.color(1,0,0));
         final Button addButton = new Button("Add");
-        addButton.setStyle("-fx-background-color: #fa940c;");
+        addButton.setStyle("-fx-background-color: #336699;");
         addButton.setOnAction(e -> {
             boolean duplicate = false;
 
@@ -751,7 +574,7 @@ public class BookstoreApp extends Application {
         });
 
         final Button deleteButton = new Button("Delete");
-        deleteButton.setStyle("-fx-background-color: #fa940c;");
+        deleteButton.setStyle("-fx-background-color: #336699;");
         deleteButton.setOnAction(e -> {
             Customer selectedItem = customersTable.getSelectionModel().getSelectedItem();
             customersTable.getItems().remove(selectedItem); //remove from tableview
