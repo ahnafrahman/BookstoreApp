@@ -248,7 +248,8 @@ public class BookstoreApp extends Application {
         primaryStage.setScene(new Scene(loginScreen(false), 605, 550));
         primaryStage.show();
         System.out.println("Opened bookstore application");
-
+        
+        
         try{
             owner.restockArrays();
             System.out.println("Arrays restocked from files");
@@ -618,7 +619,7 @@ public class BookstoreApp extends Application {
         booksTable.getColumns().addAll(titleColumn, priceColumn);
 
         final TextField addBookTittle = new TextField();
-        addBookTittle.setPromptText("Tittle");
+        addBookTittle.setPromptText("Title");
         addBookTittle.setMaxWidth(titleColumn.getPrefWidth());
         final TextField addBookPrice = new TextField();
         addBookPrice.setMaxWidth(priceColumn.getPrefWidth());
@@ -694,16 +695,16 @@ public class BookstoreApp extends Application {
         label.setFont(new Font("Arial", 20));
 
         //Customer username column
-        TableColumn<Customer, String> usernameCol = new TableColumn<>("Username");
+        TableColumn<Customer, String> usernameCol = new TableColumn<>("NameInput");
         usernameCol.setMinWidth(140);
         usernameCol.setStyle("-fx-alignment: CENTER;");
-        usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+        usernameCol.setCellValueFactory(new PropertyValueFactory<>("NameInput"));
 
         //Customer password column
-        TableColumn<Customer, String> passwordCol = new TableColumn<>("Password");
+        TableColumn<Customer, String> passwordCol = new TableColumn<>("PassInput");
         passwordCol.setMinWidth(140);
         passwordCol.setStyle("-fx-alignment: CENTER;");
-        passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+        passwordCol.setCellValueFactory(new PropertyValueFactory<>("PassInput"));
 
         //Customer points column
         TableColumn<Customer, Integer> pointsCol = new TableColumn<>("Points");
@@ -750,7 +751,23 @@ public class BookstoreApp extends Application {
                 addUsername.clear();
             }
         });
-
+//        addButton.setOnAction(e -> {
+//            try {
+//                double price = Math.round((Double.parseDouble(addBookPrice.getText()))*100);
+//                Owner.bookList.add(new Book(addBookTittle.getText(), price/100));
+//                //makes new book and adds it to arraylist
+//                booksTable.getItems().clear(); //refresh page so new books can be accessed
+//                booksTable.setItems(addBooks());
+//                addBookTittle.clear(); //clears text fields
+//                addBookPrice.clear();
+//                core.getChildren().remove(bookAddErr); //removes a previous Invalid Input error if there was one
+//            }
+//            catch (Exception exception){
+//                if(!core.getChildren().contains(bookAddErr)){
+//                    core.getChildren().add(bookAddErr);
+//                }
+//            }
+//        });
         final Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #fa940c;");
         deleteButton.setOnAction(e -> {
