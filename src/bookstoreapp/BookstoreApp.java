@@ -636,7 +636,7 @@ public class BookstoreApp extends Application {
         addButton.setOnAction(e -> {
             try {
                 double price = Math.round((Double.parseDouble(addBookPrice.getText()))*100);
-                Owner.bookList.add(new Book(addBookTittle.getText(), price/100));
+                Owner.bookList.add(new Book(addBookTittle.getText(),Math.abs(price/100)));
                 //makes new book and adds it to arraylist
                 booksTable.getItems().clear(); //refresh page so new books can be accessed
                 booksTable.setItems(addBooks());
