@@ -695,13 +695,13 @@ public class BookstoreApp extends Application {
         label.setFont(new Font("Arial", 20));
 
         //Customer username column
-        TableColumn<Customer, String> usernameCol = new TableColumn<>("NameInput");
+        TableColumn<Customer, String> usernameCol = new TableColumn<>("Username");
         usernameCol.setMinWidth(140);
         usernameCol.setStyle("-fx-alignment: CENTER;");
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("NameInput"));
 
         //Customer password column
-        TableColumn<Customer, String> passwordCol = new TableColumn<>("PassInput");
+        TableColumn<Customer, String> passwordCol = new TableColumn<>("Password");
         passwordCol.setMinWidth(140);
         passwordCol.setStyle("-fx-alignment: CENTER;");
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("PassInput"));
@@ -751,23 +751,7 @@ public class BookstoreApp extends Application {
                 addUsername.clear();
             }
         });
-//        addButton.setOnAction(e -> {
-//            try {
-//                double price = Math.round((Double.parseDouble(addBookPrice.getText()))*100);
-//                Owner.bookList.add(new Book(addBookTittle.getText(), price/100));
-//                //makes new book and adds it to arraylist
-//                booksTable.getItems().clear(); //refresh page so new books can be accessed
-//                booksTable.setItems(addBooks());
-//                addBookTittle.clear(); //clears text fields
-//                addBookPrice.clear();
-//                core.getChildren().remove(bookAddErr); //removes a previous Invalid Input error if there was one
-//            }
-//            catch (Exception exception){
-//                if(!core.getChildren().contains(bookAddErr)){
-//                    core.getChildren().add(bookAddErr);
-//                }
-//            }
-//        });
+
         final Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #fa940c;");
         deleteButton.setOnAction(e -> {

@@ -3,11 +3,11 @@ package bookstoreapp;
 public class Customer {
     private final String nameInput;
     private final String passInput;
-    private double points;
+    private int points;
     private String CustomerStatus;
     
     //Constructors
-    Customer(String u, String p, double po){
+    Customer(String u, String p, int po){
         this.nameInput = u;
         this.passInput = p;
         this.points = po;
@@ -24,12 +24,12 @@ public class Customer {
         return this.passInput;
     }
     
-    public double getPoints(){
+    public int getPoints(){
         return this.points;
     }
     
     //Setters
-    public void setPoints(double pointsToAdd){
+    public void setPoints(int pointsToAdd){
         this.points += pointsToAdd;
         setCustomerStatus(this.points);
     }
@@ -39,7 +39,7 @@ public class Customer {
     
     //Helper
     
-    private void setCustomerStatus(double points){
+    private void setCustomerStatus(int points){
         if (points > 1000) {
             this.CustomerStatus = "Gold";
         }
